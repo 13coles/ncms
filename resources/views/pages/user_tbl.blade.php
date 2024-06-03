@@ -30,57 +30,59 @@
     @include('partials.header')
     @include('partials.sidenav')
     <div class="div p-5"></div>
-<div class="conatiner main-content mt-5">
-    <div class="container mt-4">
-                   
-        <h1>Users Table Management</h1>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registrationModal">Add New User</button>
-        
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#ID</th>
-                    <th scope="col">User Name</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Created at</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                <tr>
-                    <th scope="row">{{ $user->id }}</th>
-                    <td>{{ $user->user_name }}</td> 
-                    <td>{{ $user->role }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->created_at }}</td>
-                    <td>
-    
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal"
-                            data-bs-user-id="{{ $user->id }}"
-                            data-bs-user-name="{{ $user->user_name }}"
-                            data-bs-user-email="{{ $user->email }}"
-                            data-bs-user-role="{{ $user->role }}">
-                            Edit
-                        </button>
-    
-                        <!-- Delete Button -->
-                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>                        
-        </table>
-    
-        @include('partials.create_new_user')
-        @include('partials.update_user')
+    <div class="container main-content">
+        <div class="container ms-5">
+            <div class="container ms-5 p-5">
+                <h1>Users Table Management</h1>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registrationModal">Add New User</button>
+                <table class="table ms-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Created at</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                        <tr>
+                            <th scope="row">{{ $user->id }}</th>
+                            <td>{{ $user->user_name }}</td> 
+                            <td>{{ $user->role }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->created_at }}</td>
+                            <td>
+            
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal"
+                                    data-bs-user-id="{{ $user->id }}"
+                                    data-bs-user-name="{{ $user->user_name }}"
+                                    data-bs-user-email="{{ $user->email }}"
+                                    data-bs-user-role="{{ $user->role }}">
+                                    Edit
+                                </button>
+            
+                                <!-- Delete Button -->
+                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>                        
+                </table>
+            
+                @include('partials.create_new_user')
+                @include('partials.update_user')
+            </div>
+        </div>
     </div>
-</div>
+    
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const passwordInput = document.getElementById('password');

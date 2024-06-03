@@ -27,17 +27,6 @@
             max-width: 500px; /* Set a max width for the alert messages */
             margin: 0 auto; /* Center the alert messages */
         }
-        @keyframes slide-in {
-            to {
-                right: 20px; /* Slide in to this position */
-            }
-        }
-
-        @keyframes slide-out {
-            to {
-                right: -500px; /* Slide out to this position */
-            }
-        }
     </style>
 </head>
 
@@ -46,19 +35,51 @@
     @include('partials.header')
     @include('partials.sidenav')
     <div class="div p-5"></div>
-<div class="conatiner main-content mt-5">
-
-    <div class="container mt-4">
-        <h1>Applicants List</h1>
-        <div class="row">
-            <div class="col border border-secondary">Col 1</div>
-            <div class="col border border-secondary">Col 2</div>
-            <div class="col border border-secondary">Col 3</div>
+    <div class="container main-content">
+        <div class="move-to-right ms-5">
+            <div class="div-inside ms-5 p-5 ">
+                <h1 class="mb-4">Applicants List</h1>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Static table rows -->
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>John Doe</td>
+                                <td>john@example.com</td>
+                                <td>123-456-7890</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-success">Accept</button>
+                                    <button type="button" class="btn btn-sm btn-warning">Decline</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jane Smith</td>
+                                <td>jane@example.com</td>
+                                <td>987-654-3210</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-success">Accept</button>
+                                    <button type="button" class="btn btn-sm btn-warning">Decline</button>
+                                </td>
+                            </tr>
+                            <!-- Add more static rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        
-     
     </div>
-</div>
+    
 <script>
     // Hide login success message after 2 seconds
     setTimeout(() => {

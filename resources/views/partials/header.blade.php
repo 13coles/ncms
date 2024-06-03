@@ -23,21 +23,23 @@
                 </script>
             @endif
         </div>
+         {{-- @if(session('login_success'))
+        <div id="loginSuccessMessage" class="alert alert-success mb-3 mt-3">
+            {{ session('login_success') }}
+        </div>
+         @endif --}}
+         <!-- Top Navbar -->
+        <!-- Top Navbar -->
+            @if(Auth::check() && Route::currentRouteName() === 'dashboard' && !session()->has('roleMessageShown'))
+            <div id="roleMessage" class="alert alert-info p-2 me-3">
+                Logged in as: {{ session('role') }}
+            </div>
+            <?php session(['roleMessageShown' => true]); ?>
+            @endif
+
         <form action="{{ route('logout') }}" method="POST" style="display: inline;">
             @csrf
             <button type="submit" class="btn btn-danger">Logout</button>
         </form>
     </div>
 </nav>
-<!-- Session Messages -->
-    @if(session('login_success'))
-        <div id="loginSuccessMessage" class="alert alert-success mb-3 mt-3">
-            {{ session('login_success') }}
-        </div>
-    @endif
-    
-    @if(Auth::check())
-        <div id="roleMessage" class="alert alert-info">
-            Logged in as: {{ session('role') }}
-        </div>
-    @endif

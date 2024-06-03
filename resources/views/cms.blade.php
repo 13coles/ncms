@@ -27,37 +27,21 @@
             max-width: 500px; /* Set a max width for the alert messages */
             margin: 0 auto; /* Center the alert messages */
         }
-        @keyframes slide-in {
-            to {
-                right: 20px; /* Slide in to this position */
-            }
-        }
-
-        @keyframes slide-out {
-            to {
-                right: -500px; /* Slide out to this position */
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Top Navbar -->
     @include('partials.header')
-    @include('partials.sidenav')
     <div class="div p-5"></div>
-<div class="conatiner main-content mt-5">
-    <div class="container mt-4">
-                   
-        <h1>CMS</h1>
-        <div class="row">
-            <div class="col border border-secondary">Col 1</div>
-            <div class="col border border-secondary">Col 2</div>
-            <div class="col border border-secondary">Col 3</div>
+    <div class="container main-content">
+        <div class="move-to-right m-5 p-5">
+            <div class="div-inside ms-5 p-5 border border-secondary">
+                <h1 class="mb-4">CMS Page</h1>
+                <p class="text-danger mb-0">This Page is under development... <a class="nav-link m-3" href="{{ route('dashboard') }}" style="text-decoration: underline;">Go back</a> to Dashboard Page</p>
+            </div>
         </div>
-        
-     
     </div>
-</div>
+    
 <script>
     // Hide login success message after 2 seconds
     setTimeout(() => {

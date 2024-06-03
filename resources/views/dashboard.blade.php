@@ -27,37 +27,50 @@
             max-width: 500px; /* Set a max width for the alert messages */
             margin: 0 auto; /* Center the alert messages */
         }
-        @keyframes slide-in {
-            to {
-                right: 20px; /* Slide in to this position */
-            }
-        }
-
-        @keyframes slide-out {
-            to {
-                right: -500px; /* Slide out to this position */
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Top Navbar -->
     @include('partials.header')
     @include('partials.sidenav')
     <div class="div p-5"></div>
-<div class="conatiner main-content mt-5">
-    <div class="container mt-4">
-                   
-        <h1>Welcome To Dashboard</h1>
-        <div class="row">
-            <div class="col border border-secondary">Col 1</div>
-            <div class="col border border-secondary">Col 2</div>
-            <div class="col border border-secondary">Col 3</div>
+    <div class="container main-content mt-5">
+        <div class="conatiner-inside ms-5 justify-content-center">
+            <h1 class="text-center mb-4">Welcome To Dashboard</h1>
+            <div class="container m-5">
+                <div class="row justify-content-center p-3 ms-3">
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">10</h5>
+                                <p class="card-text">Resgitered Users</p>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">4</h5>
+                                <p class="card-text">Total Courses Offered</p>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">200</h5>
+                                <p class="card-text">Total Applicants</p>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-     
     </div>
-</div>
+    
+    
  <script>
         // Hide login success message after 2 seconds
         setTimeout(() => {
