@@ -78,11 +78,11 @@
                     </div>
                 </form>
             </div>
-            <div class="content-card border border-end-1 border-success">
+            {{-- <div class="content-card border border-end-1 border-success">
                 <div class="img-container">
                     <img src="{{ asset('images/berto Final 1.png') }}" alt="Berto Image">
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

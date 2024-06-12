@@ -10,29 +10,7 @@ use Illuminate\Support\Facades\Auth; // Add this line
 use Illuminate\Validation\ValidationException; // Add this line
 class UserController extends Controller
 {
-    //register new users function
-    // public function register(Request $request)
-    // {
-       
-    //     $validatedData = $request->validate([
-    //         'user_name' => 'required|string|max:255',
-    //         'role' => 'required|string|in:admin,cms_admin,nolitc_staff',
-    //         'email' => 'required|email|unique:users,email',
-    //         'password' => 'required|string|min:8',
-    //     ]);
 
-       
-    //     $user = new User();
-    //     $user->user_name = $validatedData['user_name'];
-    //     $user->role = $validatedData['role'];
-    //     $user->email = $validatedData['email'];
-    //     $user->password = bcrypt($validatedData['password']);
-    //     $user->save();
-
-       
-    //     return redirect()->back()->with('success', 'Registration successful!');
-
-    // }
 
      // Store a new user
      public function store(Request $request)
@@ -65,26 +43,6 @@ class UserController extends Controller
        return view('pages.user_tbl', ['users' => $users]);
    }
 
-    // update user data
-    // public function update(Request $request, $id)
-    // {
-  
-    //     $validatedData = $request->validate([
-    //         'user_name' => 'required|string|max:255',
-    //         'role' => 'required|string|in:admin,cms_admin,nolitc_staff',
-    //         'email' => 'required|email|unique:users,email,',
-    //     ]);
-
-      
-    //     $user = User::findOrFail($id);
-    //     $user->user_name = $validatedData['user_name'];
-    //     $user->role = $validatedData['role'];
-    //     $user->email = $validatedData['email'];
-    //     $user->save();
-
-    //     return redirect()->back()->with('success', 'User updated successfully!');
-    // }
-
     // Update an existing user
     public function update(Request $request, $id)
     {
@@ -97,12 +55,6 @@ class UserController extends Controller
             'password' => 'nullable|string|min:8', // Password is optional and must be at least 8 characters if provided
         ]);
 
-        // $user = User::findOrFail($id);
-        // $user->update([
-        //     'user_name' => $request->user_name,
-        //     'role' => $request->role,
-        //     'email' => $request->email,
-        // ]);
         $user = User::findOrFail($id);
         $user->user_name = $request->user_name;
         $user->role = $request->role;
@@ -119,13 +71,6 @@ class UserController extends Controller
         return redirect()->route('users.management')->with('success', 'User updated successfully.');
     }
 
-    //delete user
-    // public function destroy(User $user)
-    // {
-    //     $user->delete();
-    //     return redirect()->back()->with('success', 'User deleted successfully!');
-    // }
-
     // Delete a user
     public function destroy($id)
     {
@@ -141,39 +86,6 @@ class UserController extends Controller
         return view('login');  // Points to resources/views/login.blade.php
     }
 
-
-
-    
-    //log in function
-    // public function login(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //         'role' => 'required|string|in:admin,cms_admin,nolitc_staff',
-    //     ]);
-
-       
-    //     if (Auth::attempt($request->only('email', 'password'))) {
-    //         $user = Auth::user();
-
-    //         switch ($user->role) {
-    //             case 'admin':
-    //                 return redirect()->route('/dashboard');
-    //             case 'cms_admin':
-    //                 return redirect()->route('/cms');
-    //             case 'nolitc_staff':
-    //                 return redirect()->route('/course-management');
-    //             default:
-    //                 Auth::logout();
-    //                 return redirect()->route('login')->withErrors(['role' => 'Invalid role specified.']);
-    //         }
-    //     }
-
-    //     throw ValidationException::withMessages([
-    //         'email' => [trans('auth.failed')],
-    //     ]);
-    // }
     public function dashboard()
     {
         return view('dashboard');
@@ -239,6 +151,32 @@ class UserController extends Controller
         return redirect()->route('login');
     }
    
+    public function cmsdashboard()
+    {
+        return view('cms.dashboard');
+    }
 
-   
+    public function cmshome()
+    {
+        return view('cms.home');
+    }
+
+    public function cmsprograms()
+    {
+        return view('cms.programs');
+    }
+
+    public function cmsupdates()
+    {
+        return view('cms.update');
+    }
+
+    // public function scorecards()
+    // {
+    //     return view('cms.score_card');
+    // }
+    public function partners()
+    {
+        return view('cms.partners');
+    }
 }

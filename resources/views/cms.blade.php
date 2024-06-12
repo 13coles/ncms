@@ -33,13 +33,22 @@
     <!-- Top Navbar -->
     @include('partials.header')
     <div class="div p-5"></div>
-    <div class="container main-content">
-        <div class="move-to-right m-5 p-5">
-            <div class="div-inside ms-5 p-5 border border-secondary">
-                <h1 class="mb-4">CMS Page</h1>
-                <p class="text-danger mb-0">This Page is under development... <a class="nav-link m-3" href="{{ route('dashboard') }}" style="text-decoration: underline;">Go back</a> to Dashboard Page</p>
-            </div>
-        </div>
+   
+
+    <div class="sidebar mt-5 border border-success shadow-sm">
+     
+        <nav class="nav flex-column">
+            <a class="nav-link m-3" href="{{ route('dashboard') }}">Dashboard</a>
+            @if(Auth::check() && (Auth::user()->role === 'cms_admin' || Auth::user()->role === 'admin'))
+                <a class="nav-link m-3" href="{{ route('cms.home') }}">Home</a>
+                <a class="nav-link m-3" href="{{ route('cms.programs') }}">Programs</a>
+                <a class="nav-link m-3" href="{{ route('cms.update') }}">Updates</a>
+                <a class="nav-link m-3" href="{{ route('cms.score_card') }}">Score Card</a>
+                <a class="nav-link m-3" href="{{ route('cms.partners') }}">Partners</a>
+            @endif
+        </nav>
+        
+        
     </div>
     
 <script>

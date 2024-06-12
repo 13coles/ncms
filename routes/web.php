@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ScoreCardController;
+use App\Models\ScoreCard;
 
 //this route will open 1st
 Route::get('/', function () {
@@ -15,30 +17,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/applicants', [UserController::class, 'applicants'])->name('applicants');
     Route::get('/users-management', [UserController::class, 'usersManagement'])->name('users.management');
 });
+Route::middleware('auth')->group(function () {
+    Route::get('/cms/home', [UserController::class, 'cmshome'])->name('cms.home');
+    Route::get('/cms/programs', [UserController::class, 'cmsprograms'])->name('cms.programs');
+    Route::get('/cms/update', [UserController::class, 'cmsupdates'])->name('cms.update');
+    // Route::get('/cms/score_card', [UserController::class, 'scorecards'])->name('cms.score_card');
+    Route::get('/cms/score_card', [ScoreCardController::class, 'showScoreCard'])->name('cms.score_card');
+
+    Route::get('/cms/partners', [UserController::class, 'partners'])->name('cms.partners');
+});
+
+
 //log in route to open
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login']);
 
 //log out
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-// Route::get('/home', function () {
-//     return view('layouts.home');
-// });
-
-// Admin dashboard
-// Route::get('/admin-dashboard', function () {
-//     return view('pages.admin_dashboard');
-// })->name('pages.admin_dashboard')->middleware('auth');
-
-// CMS Admin dashboard
-// Route::get('/cms/dashboard', function () {
-//     return view('cms.dashboard');
-// })->name('cms.dashboard')->middleware('auth');
-
-// NOLITC Staff dashboard
-// Route::get('/staff/dashboard', function () {
-//     return view('staff.dashboard');
-// })->name('staff.dashboard')->middleware('auth');
 
 // add new user route
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -75,17 +70,7 @@ Route::get('/course-management', [CourseController::class, 'indexForUsers'])->na
 Route::get('/view-website', function () {
     return view('view-website'); // Ensure you have a 'view-website.blade.php' file in your resources/views directory
 })->name('view.website');
-// Route::get('/dashboard', function () {
-//     return view('dashboard'); 
-// })->name('dashboard');
-// Route::get('/course-management', function () {
-//     return view('course-management'); 
-// })->name('course.management');
-// Route::get('/applicants', function () {
-//     return view('applicants'); 
-// })->name('applicants');
-// Route::get('/cms', function () {
-//     return view('cms'); 
-// })->name('cms');
 
+
+Route::post('/update/{id}', [ScoreCardController::class, 'update'])->name('update');
 
