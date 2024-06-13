@@ -175,8 +175,8 @@ class UserController extends Controller
     // {
     //     return view('cms.score_card');
     // }
-    public function partners()
-    {
-        return view('cms.partners');
-    }
+    // public function partners()
+    // {
+    //     return view('cms.partners');
+    // }
 }

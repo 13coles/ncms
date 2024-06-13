@@ -1,37 +1,49 @@
 @include('cms')
 <div class="container main-content">
     <div class="container ms-5">
-        <div class="container ms-5 p-5">
-            <h1>Score Card</h1>
-            <table class="table ms-5">
-                <thead>
-                    <tr>
-                        <th scope="col">#ID</th>
-                        <th scope="col">Number of Graduates</th>
-                        <th scope="col">Number of Employed</th>
-                        <th scope="col">Employment Rates</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($scoreCard as $card)
-                    <tr>
-                        <th scope="row">{{ $card->id }}</th>
-                        <td>{{ number_format($card->number_of_graduates) }}</td> 
-                        <td>{{ number_format($card->number_of_employed) }}</td>
-                        <td>{{ round($card->employment_rate) }}%</td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal"
-                                data-bs-card-id="{{ $card->id }}"
-                                data-bs-number-of-graduates="{{ $card->number_of_graduates }}"
-                                data-bs-number-of-employed="{{ $card->number_of_employed }}">
-                                Edit
+        <div class="container main-content mt-5">
+            <div class="container-inside ms-5 justify-content-center">
+                <h1 class="text-center mb-4">Score Card</h1>
+                <div class="container m-5">
+                    <div class="row justify-content-center p-3 ms-3">
+                        @foreach($scoreCard as $card)
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{ number_format($card->number_of_graduates) }}</h5>
+                                    <p class="card-text text-center">Number of Graduates</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{ number_format($card->number_of_employed) }}</h5>
+                                    <p class="card-text text-center">Number of Employed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{ round($card->employment_rate) }}%</h5>
+                                    <p class="card-text text-center">Employment Rate</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal"
+                                        data-bs-card-id="{{ $card->id }}"
+                                        data-bs-number-of-graduates="{{ $card->number_of_graduates }}"
+                                        data-bs-number-of-employed="{{ $card->number_of_employed }}">
+                                        Edit
                             </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>                        
-            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -69,41 +81,7 @@
     </div>
 </div>
 
-<div class="container main-content mt-5">
-    <div class="container-inside ms-5 justify-content-center">
-        <h1 class="text-center mb-4">Score Card</h1>
-        <div class="container m-5">
-            <div class="row justify-content-center p-3 ms-3">
-                @foreach($scoreCard as $card)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{ number_format($card->number_of_graduates) }}</h5>
-                            <p class="card-text text-center">Number of Graduates</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{ number_format($card->number_of_employed) }}</h5>
-                            <p class="card-text text-center">Number of Employed</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{ round($card->employment_rate) }}%</h5>
-                            <p class="card-text text-center">Employment Rate</p>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

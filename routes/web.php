@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ScoreCardController;
+use App\Http\Controllers\PartnerController;
+use App\Models\Partner;
 use App\Models\ScoreCard;
 
 //this route will open 1st
@@ -24,7 +26,7 @@ Route::middleware('auth')->group(function () {
     // Route::get('/cms/score_card', [UserController::class, 'scorecards'])->name('cms.score_card');
     Route::get('/cms/score_card', [ScoreCardController::class, 'showScoreCard'])->name('cms.score_card');
 
-    Route::get('/cms/partners', [UserController::class, 'partners'])->name('cms.partners');
+    Route::get('/cms/partners', [PartnerController::class, 'showpartners'])->name('cms.partners');
 });
 
 
@@ -73,4 +75,6 @@ Route::get('/view-website', function () {
 
 
 Route::post('/update/{id}', [ScoreCardController::class, 'update'])->name('update');
-
+// Route::post('/partners', [PartnerController::class, 'store'])->name('partners');
+Route::post('/partners', [PartnerController::class, 'store'])->name('partners.store');
+Route::delete('/partners', [PartnerController::class, 'destroy'])->name('partners.delete');
