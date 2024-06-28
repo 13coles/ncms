@@ -5,6 +5,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ScoreCardController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\AccreditationController;
+use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\SpecialProgramController;
+use App\Http\Controllers\EventController;
+use App\Models\Accreditation;
 use App\Models\Partner;
 use App\Models\ScoreCard;
 
@@ -21,12 +26,26 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware('auth')->group(function () {
     Route::get('/cms/home', [UserController::class, 'cmshome'])->name('cms.home');
-    Route::get('/cms/programs', [UserController::class, 'cmsprograms'])->name('cms.programs');
+    Route::get('/cms/programs', [UserController::class, 'secondCard'])->name('programs.secondCard');
     Route::get('/cms/update', [UserController::class, 'cmsupdates'])->name('cms.update');
-    // Route::get('/cms/score_card', [UserController::class, 'scorecards'])->name('cms.score_card');
     Route::get('/cms/score_card', [ScoreCardController::class, 'showScoreCard'])->name('cms.score_card');
+    Route::post('/accreditation/add', [AccreditationController::class, 'addAccreditation'])->name('accreditation.add');
+    Route::put('/accreditations/{accreditation}', [AccreditationController::class, 'update'])->name('accreditations.update');
+    Route::delete('/accreditations/{accreditation}', [AccreditationController::class, 'destroy'])->name('accreditations.destroy');
+
+    Route::post('/assessment/add', [AssessmentController::class, 'addAssesment'])->name('assessment.add');
+    Route::put('/assessments/{assessment}', [AssessmentController::class, 'update'])->name('assessments.update');
+    Route::delete('/assessments/{assessment}', [AssessmentController::class, 'destroy'])->name('assessments.destroy');
 
     Route::get('/cms/partners', [PartnerController::class, 'showpartners'])->name('cms.partners');
+    Route::post('/special_program/add', [SpecialProgramController::class, 'store'])->name('special_program.store');
+    Route::put('/special-program/{specialProgram}', [SpecialProgramController::class, 'update'])->name('special_program.update');
+    Route::delete('/special-programs/{id}', [SpecialProgramController::class, 'destroy'])->name('special-programs.destroy');
+    Route::post('/events/add', [EventController::class, 'store'])->name('events.store');
+    Route::put('/events/update/{event}', [EventController::class, 'update'])->name('events.update');
+    Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+
+
 });
 
 

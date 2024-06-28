@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMS Page</title>    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    
+    <!-- In your main layout or HTML head -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <style>
         .sidebar {
             height: 100vh;
@@ -25,13 +27,13 @@
             padding: 1rem;
         }
         .alert {
-            max-width: 500px; /* Set a max width for the alert messages */
-            margin: 0 auto; /* Center the alert messages */
+            max-width: 500px; 
+            margin: 0 auto; 
         }
         .partner-logo {
-        width: 200px; /* Set your desired width */
-        height: 200px; /* Set your desired height */
-        object-fit: contain; /* Ensures the image scales correctly */
+        width: 200px; 
+        height: 200px; 
+        object-fit: contain; 
         display: block;
         margin: 0 auto;
     }
@@ -49,7 +51,7 @@
             <a class="nav-link m-3" href="{{ route('dashboard') }}">Dashboard</a>
             @if(Auth::check() && (Auth::user()->role === 'cms_admin' || Auth::user()->role === 'admin'))
                 <a class="nav-link m-3" href="{{ route('cms.home') }}">Home</a>
-                <a class="nav-link m-3" href="{{ route('cms.programs') }}">Programs</a>
+                <a class="nav-link m-3" href="{{ route('programs.secondCard') }}">Programs</a>
                 <a class="nav-link m-3" href="{{ route('cms.update') }}">Updates</a>
                 <a class="nav-link m-3" href="{{ route('cms.score_card') }}">Score Card</a>
                 <a class="nav-link m-3" href="{{ route('cms.partners') }}">Partners</a>

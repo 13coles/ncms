@@ -40,7 +40,7 @@
 
 
 
-<!-- Update Modal -->
+<!-- ADD Modal -->
 <div class="modal fade" id="partnerModal" tabindex="-1" aria-labelledby="partnerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

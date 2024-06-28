@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth; // Add this line
 use Illuminate\Validation\ValidationException; // Add this line
+use App\Models\Accreditation;
+use App\Models\Assessment;
+use App\Models\Event;
+use App\Models\SpecialProgram;
+
 class UserController extends Controller
 {
 
@@ -30,11 +35,11 @@ class UserController extends Controller
          $user->email = $request->email;
          $user->password = Hash::make($request->password);
          $user->save();
-    // Log the created user for debugging
-    Log::info('User created:', $user->toArray());
-         // Redirect to the user management page with a success message
-         return redirect()->route('users.management')->with('success', 'User created successfully.');
-     }
+        // Log the created user for debugging
+        Log::info('User created:', $user->toArray());
+            // Redirect to the user management page with a success message
+            return redirect()->route('users.management')->with('success', 'User created successfully.');
+        }
 
    // Display all users data
    public function index()
@@ -161,9 +166,20 @@ class UserController extends Controller
         return view('cms.home');
     }
 
-    public function cmsprograms()
+    public function secondCard()
     {
-        return view('cms.programs');
+        $accreditations = Accreditation::all();
+        $assessments = Assessment::all();
+        $events = Event::all();
+        $special_programs = SpecialProgram::all();
+        
+
+        return view('cms.programs', [
+            'accreditations' => $accreditations,
+            'assessments' => $assessments,
+            'events' => $events,
+            'special_programs' => $special_programs,
+        ]);
     }
 
     public function cmsupdates()
